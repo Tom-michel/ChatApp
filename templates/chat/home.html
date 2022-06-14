@@ -8,6 +8,7 @@
     <h2>Django Chat</h2>
 </div>
 
+
 <div class="container">
     <style>
       input[type=text], select {
@@ -50,6 +51,44 @@
         <input type="text" name="username" id="username" width="100px" />
         <input type="submit" value="Enter Room">
     </form>
+    
+    <h1>
+        User :
+        {{request.user.username}}
+    </h1>
+    <br><br>
+
+    {% if user.is_authenticated %}
+        <table>
+            <tr>
+                <td>
+                        <h2>Liste de mes salons :</h2>
+                    {% for room in roomList %}
+                        {% if room.user1 == request.user.username or room.user2 == request.user.username %}
+                            <ul id="li_room">
+                                <h5></h5>
+                                <li>{{room.name}}</li> : 
+                                <a href="/{{room.name}}/?username={{request.user.username}}">{{room.name}} >{{room.id}}</a>
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+                <td>
+                        <h2>Liste des users :</h2>
+                    {% for use in userList %}
+                        {% if use.username != request.user.username %}
+                            <ul>
+                                <li>{{use}}</li> :
+                                <a href="{% url 'createRoom' request.user.id use.id %}">discuter</a> 
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+        </table>
+    {% endif %}
+    
 </div>
+
 
 {% endblock %}
