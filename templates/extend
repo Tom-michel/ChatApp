@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} ChatApp | tOm {% endblock %}
+
+{% block content %}
+  <br><br>
+  <h1>Accueil</h1>
+
+{% endblock %}
