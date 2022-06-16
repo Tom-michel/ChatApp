@@ -87,14 +87,3 @@ def getMessages(request, room):
 
 
 
-
-def getRooms(request, id_u):
-    util = User.objects.get(id=id_u)
-
-    # messages = Message.objects.filter(room=room_details.id)
-    # context = {"messages":list(messages.values())}
-    msg = "msg recu"
-    context = {'msg':msg}
-    return JsonResponse(context)
-
-
